@@ -8,9 +8,7 @@ output:
     theme: journal
 bibliography: ReportReferences.bib
 params:
-  continue_on_error: TRUE
   config_file: "config.yml"
-  state_usps: "[STATE USPS]"  #state USPS...must provided
     
 ---
 
@@ -27,7 +25,7 @@ knitr::opts_chunk$set(
     fig.align = "center",
     message = FALSE,
     warning = FALSE,
-    error = params$continue_on_error,
+    error = TRUE,
     cache.lazy = FALSE,
     bitmapType = "cairo"
     )
@@ -42,13 +40,10 @@ library(report.generation)
 
 nfiles <- NA ## set to a number for test reports.
 
-if (params$state_usps=="[STATE USPS]") {stop("Must define a target state by USPS code.")}
-
-
 ```
 
 ```{r  load_config}
-reportStateUSPS <- params$state_usps 
+reportStateUSPS <- "[STATE POSTAL CODE  HERE]" ## e.g. CA
 
 ## Block loads the config file and geodata
 config <- covidcommon:::load_config(params$config_file)
